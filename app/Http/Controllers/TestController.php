@@ -15,7 +15,7 @@ class TestController extends Controller
         echo '</pre>';
         echo 'hello';
 
-        \Debugbar::debug( $model);
+        \Debugbar::debug($model);
 
     }
 }

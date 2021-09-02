@@ -11,15 +11,19 @@ services:
       - '8098:80'
     links:
       - fpm
+    networks:
+      - app-network
   mysql:
     image: mysql:5.7
     ports:
       - "33061:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=laravel
+      - MYSQL_DATABASE=poligon
     volumes:
       - db:/var/lib/mysql
+    networks:
+      - app-network
   fpm:
     build:
       context: .
@@ -28,5 +32,10 @@ services:
       - ./:/var/www/laravel-docker
     links:
       - mysql
+    networks:
+      - app-network
 volumes:
   db:
+networks:
+  app-network:
+    driver: bridge
